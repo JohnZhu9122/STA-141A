@@ -1,0 +1,69 @@
+---
+title: "STA 141A: Assignment 5"
+author: "(Type your name here)"
+output: html_document
+---
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Question 1
+
+Generate a synthetic dataset with 300 observations and 6 features, 
+$X = (X_1, X_2, X_3, X_4, X_5, X_6)^{\mathrm{T}}$, where $X_1, X_2$ are positively correlated, $X_3, X_4$ are positively correlated, and $X_5, X_6$ are white noise that are independent with others. 
+
+1. Simulate $300$ observations from a $6$-dimensional multivariate normal distribution with a covariance matrix of your choice that satisfies the above structure.
+2. Standardize all 6 variables separately.
+3. Perform PCA on the standardized dataset using `prcomp()`.
+4. Create a scree plot (variances or proportion of variance explained).
+5. Using the loadings, interpret what PC1 and PC2 represent in terms of the original variables.
+
+## Question 2
+
+We will revisit the built-in `USArrests` dataset.
+
+1. Convert `USArrests` to a tibble with a `State` column.
+2. Perform PCA on the unscaled variables (using `prcomp`, `scale. = FALSE`).
+3. Perform PCA on the scaled variables (using `scale()` first or `scale. = TRUE`).
+4. For each PCA, create a scree plot (variance or proportion of variance explained).
+5. Compare the loadings for PC1 and PC2 from the two analyses. Which variables dominate PC1 and PC2 in each case?
+
+
+## Question 3
+
+Use the `iris` dataset in `R` and consider only the four numeric variables.
+
+1. Scale the numeric variables and run PCA.
+2. Plot the first two principal components (PC1 vs PC2), coloring points by `Species`.
+3. Reconstruct the original (scaled) data using:
+   - only the first principal component,
+   - the first two principal components,
+   - the first three principal components.
+4. For each reconstruction, compute the mean squared error (MSE) between the scaled original data and the reconstructed data.
+5. Comment on the tradeoff between dimension reduction and reconstruction error.
+
+## Question 4
+
+Use the scaled `USArrests` dataset.
+
+1. Convert `USArrests` to a tibble with a `State` column and scale the numeric variables.
+2. Compute a Euclidean distance matrix on the scaled variables.
+3. Perform classical MDS using `cmdscale()` with `k = 2` dimensions.
+4. Make a scatterplot of the two-dimensional MDS embedding and label or color points by region (`state.region`).
+5. Interpret the MDS plot: do states with similar crime patterns tend to cluster together? Do regions tend to group?
+
+## Question 5
+
+
+1. Create a dataset with 4 clusters, each with 50 observations. Let the 10-dimensional
+   mean vectors for the clusters be well-separated (e.g., along different coordinates),
+   and use a common covariance matrix (e.g., identity).
+2. Combine the clusters into a single data frame and scale all variables.
+3. Perform PCA and create a scatterplot of the first two principal components, colored
+   by the true cluster labels.
+4. Compute a Euclidean distance matrix on the scaled data and perform classical MDS
+   with `k = 2`. Plot the 2D MDS embedding, again colored by the true cluster labels.
+5. Repeat the procedure on unscaled data. Summarize your findings. (You may also play with the dimension.)
