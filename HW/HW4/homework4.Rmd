@@ -1,0 +1,53 @@
+---
+title: "STA 141A: Assignment 4"
+author: "(Type your name here)"
+output: html_document
+---
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Question 1 
+
+Generate 3 clusters in a two-dimensional space by sampling from bivariate normal distributions, for $k=1,2,3$,  
+$$(x, y) \sim N(\mu_k, I_2),$$
+where $\{\mu_k\}$ are two-dimensional vectors of your choice.
+
+1. Generate 50 points in each cluster.
+2. Draw a scatterplot of the unlabeled points.
+3. Apply K-means with $K = 3$.
+4. Add the resulting cluster assignments and cluster centers to your scatterplot.
+
+
+## Question 3
+
+Consider the `USAarrests` data again, with scaled variables.
+
+
+1. Run K-means with `nstart = 20` for $K = 1, 2, \dots, 10$.
+2. Extract the total within-cluster sum of squares (`tot.withinss`).
+3. Make an elbow plot of `tot.withinss` versus K.
+4. Report a reasonable value of $K$ and justify your choice.
+
+## Question 4
+
+Using the scaled `USArrests` dataset again.
+
+1. Compute a distance matrix using Euclidean distance.
+2. Perform hierarchical clustering with complete linkage.
+3. Plot the dendrogram of the clustering result.
+4. Cut the dendrogram into 4 clusters and compare these to the K-means clusters on scaled data.
+
+
+## Question 5
+
+Using the scaled `USArrests` data again.
+
+1. For each $K = 2, \dots, 8$, run k-means with `nstart = 20`.
+2. For each K, compute the average silhouette score using the `silhouette()` function
+   from the `cluster` package.
+3. Plot the average silhouette score versus K.
+4. Which K maximizes the average silhouette width? Compare this choice to your elbow-plot choice and explain any differences.
