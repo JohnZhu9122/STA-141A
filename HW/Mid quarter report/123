@@ -1,0 +1,80 @@
+import turtle
+import random
+import time
+
+# 设置屏幕
+screen = turtle.Screen()
+screen.setup(800, 600)
+screen.bgcolor("black")
+screen.title("Python 2026 Fireworks")
+screen.tracer(0)  # 关闭自动刷新，手动刷新以提高速度
+
+# 注册画笔
+pen = turtle.Turtle()
+pen.hideturtle()
+pen.speed(0)
+
+# 定义颜色列表
+colors = ["#FF0000", "#FFD700", "#00FF00", "#00BFFF", "#FF1493", "#9400D3", "#FF8C00", "#FFFFFF"]
+
+def draw_firework(x, y):
+    """在指定位置绘制一个随机颜色的烟花"""
+    pen.penup()
+    pen.goto(x, y)
+    pen.pendown()
+
+    color = random.choice(colors)
+    pen.color(color)
+
+    # 烟花的大小和密度
+    size = random.randint(50, 100)
+    density = random.randint(20, 40)
+
+    for _ in range(density):
+        pen.forward(size)
+        pen.backward(size)
+        pen.right(360 / density)
+
+def write_text():
+    """绘制新年祝福文字"""
+    pen.penup()
+    pen.goto(0, -50)
+    pen.color("#FFD700")  # 金色
+
+    # 注意：某些系统可能需要更换字体名称，如 "Arial" 或 "SimHei"
+    pen.write("2026\n新年快乐", align="center", font=("Verdana", 50, "bold"))
+
+    pen.goto(0, -100)
+    pen.color("#FFFFFF")
+    pen.write("Happy New Year", align="center", font=("Verdana", 20, "italic"))
+
+# 主循环
+def start_show():
+    # 先放20轮烟花
+    for i in range(20):
+        x = random.randint(-350, 350)
+        y = random.randint(0, 250)
+        draw_firework(x, y)
+        screen.update() # 刷新屏幕
+        time.sleep(0.1) # 控制节奏
+        pen.clear() # 清除上一帧（如果想保留烟花痕迹，注释掉这行）
+
+    # 最后定格：多放几个不消失的烟花
+    pen.clear()
+    for i in range(10):
+        x = random.randint(-350, 350)
+        y = random.randint(-100, 250)
+        draw_firework(x, y)
+
+    # 写字
+    write_text()
+    screen.update()
+
+# 运行
+if __name__ == "__main__":
+    try:
+        start_show()
+        print("点击窗口关闭")
+        screen.exitonclick()
+    except Exception as e:
+        print(e)
