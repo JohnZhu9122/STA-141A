@@ -1,0 +1,60 @@
+---
+title: "STA 141A: Assignment 3"
+author: "(Type your name here)"
+output: html_document
+---
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Random seed 
+
+```{r}
+set.seed(1)
+```
+
+---
+
+## Question 1 
+
+
+Consider an exponential distribution $X \sim \text{Exponential}(\text{rate} = 1).$
+
+
+For sample sizes $n = 20, 50, 200$, conduct simulation studies with 5,000 replicates as follows. 
+
+1. Simulate the sampling distribution of the $10\%$ trimmed mean (`mean( , trim=0.1)`).
+2. Plot the sampling distributions of the trimmed means for each $n$. 
+3. Compute the empirical standard error of the trimmed means for each $n$.
+4. Compare the standard error of the trimmed mean to that of the ordinary mean and comment on your findings, if any.
+
+
+## Question 2
+
+
+Consider a standard normal distribution $X \sim N(0, 1)$.
+
+For sample sizes $n = 10, 50, 200$, conduct the simulation studies with 5000 replicates as follows. 
+
+1. Simulate the sampling distribution of the sample variance $S^2$.
+2. Plot the sampling distribution of the sample variance for each $n$. 
+3. Compute the empirical means of $S^2$ and compare them to the population variance.
+4. Comment on any apparent bias and on the shape of the sampling distribution.
+
+
+## Question 3
+
+Consider an exponential distribution $X \sim \text{Exponential}(1)$. Let $q$ be the 75th percentile of the population.  For $n = 10, 50, 200$, estimate $P(\bar{X} > q)$ using Monte Carlo simulation. 
+
+## Question 4
+
+Consider the Student $t$-distribution with 3 degrees of freedom $X \sim t(3)$. 
+
+1. Draw a single sample of size $n = 100$.
+2. Construct a *bootstrap distribution* of the sample mean using $B = 4000$ resamples.
+3. Simulate the sampling distribution of the mean using the Monte Carlo method. 
+4. Compare the standard error of the mean from bootstrap and Monte Carlo method.
+
