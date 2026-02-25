@@ -1,0 +1,63 @@
+---
+title: "STA 141A: Assignment 2"
+author: "(Type your name here)"
+output: html_document
+---
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Find and download the billionare dataset from Canvas and the `mpg` dataset in `R`. Use the following code to load the dataset.
+
+```{r}
+library(tidyverse)
+load("../Data/bil.RData")
+bil <- as_tibble(bil)
+mpg <- as_tibble(mpg)
+```
+
+---
+
+## Question 1 
+
+**(a)** Create a histogram of `worth in billions` with binwidth = 1.
+
+**(b)** Based on the histogram, describe the *shape*, *center*, and whether its distribution has a heavy-tail.
+
+**(c)** Compute the mean and median of `worth in billions`.
+
+**(d)** Which measure (e.g., mean, median, quantiles) better represents a “typical” billionaire? Explain briefly.
+
+## Question 2
+
+**(a)** Create a boxplot of `worth in billions` by `category`, and reorder categories by median using `reorder()`.
+
+**(b)**  Which category tends to include the *wealthiest* billionaires?  Explain whether your answer relies more on *medians*, *spreads*, or *outliers*. 
+
+
+## Question 3
+
+We use the `mpg` dataset in this question. 
+
+**(a)** Create a scatterplot of `hwy` vs `displ` (engine displacement).
+
+**(b)** Add color to the points using the variable `class`.
+
+**(c)** Describe the relationship between engine size and highway mileage.   How do the classes differ?
+
+## Question 4
+
+**(a)** Make a scatterplot of `cty` vs `hwy` and facet it by `drv`.
+
+**(b)** Compare the three panels.  Do different drive types show noticeably different patterns in city–highway efficiency?
+
+## Question 5
+
+
+We will use the `Fatalities` dataset from the `AER` package, which contains annual, state-level information on traffic fatalities and related variables in the United States. Your first task is to aggregate the data across time. Specifically, load the `Fatalities` dataset, and for each state compute the average number of traffic fatalities across all available years in the dataset. Then, create a heatmap (choropleth map) of the continental United States in which each state is colored according to its average annual number of traffic fatalities. You may use built-in U.S. map data available in `R` from `map_data("state")`. Your map should include a clear title and legend. Finally, write 2–4 sentences describing any spatial patterns you observe in the map, such as regional differences or clustering of high or low fatality levels.
+
+**Note:** This is a challenging question that is *not* covered in lectures. 
+
