@@ -1,0 +1,115 @@
+---
+title: "STA 141A: Assignment 1"
+author: Jiawei Zhu 
+output: html_document
+---
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+```{r}
+library(tidyverse)
+
+# Either download the tips dataset from canvas or from the web:
+
+# url <- "https://raw.githubusercontent.com/mwaskom/seaborn-data/master/tips.csv"
+# tips <- read_csv(url)
+
+tips<- read_csv("../Data/tips.csv")
+```
+
+---
+
+## Question 1
+We begin with basic data exploration using `tips`.
+
+**(a)** Create a dataframe that contain only five columns that are `total_bill`, `tip`, `sex`, `smoker`, `day`. 
+
+tips <- read_csv("Desktop/UC DAVIS/Academic Year 2025-2026/WIN QUARTER 2025-26/STA 141A/Assignment 1/tips.csv")
+tips_dataframe <- data.frame(
+    total_bill = tips$total_bill,
+    tip = tips$tip,
+    sex = tips$sex,
+    smoker = tips$smoker,
+    day = tips$day
+)
+
+**(b)** Filter the data to include only rows where `total_bill > 20`.
+
+filter(tips,total_bill > 20)
+
+**(c)** Arrange the filtered data from (b) in *descending* order of `tip`.
+
+**(d)** What is the mean tip among bills greater than $20?
+
+## Question 2
+
+**(a)** Create a new variable `tip_pct = tip / total_bill`.
+
+**(b)** Create a variable `large_party` that is `TRUE` if the party size (`size`) is at least 4.
+
+**(c)** Compute the mean tip percentage for *large parties* and *small parties* separately. Hint:use `group_by()` and `summarise()`.
+
+**(d)** Make a simple scatterplot of `total_bill` versus `tip_pct`. 
+
+## Question 3
+
+
+**(a)** For each `day`, compute (i) mean `total_bill`,  (ii) mean `tip`, and (iii) number of observations (`n()`).
+
+**(b)** Which day has the highest mean tip percentage?   (You will need to compute `tip_pct` first.)
+
+## Question 4
+
+Consider the following tables. 
+```{r}
+
+
+customers <- tibble(
+  id = c(1, 2, 3, 4),
+  name = c("Alice", "Bob", "Carol", "David")
+)
+
+orders <- tibble(
+  order_id = c(100, 101, 102, 103, 104),
+  customer_id = c(1, 3, 4, 4, 5),
+  total = c(25, 40, 13, 19, 50)
+)
+```
+
+**(a)** Perform a *left join* of `customers` and `orders`.  Explain what happens to customer 2.
+
+**(b)** Perform an *inner join* of the same tables.  Explain what happens to customer 2 and customer 5.
+
+**(c)** Compute the *average order total* (mean `total`) by customer name  
+
+## Question 5
+
+Consider another dataset as follows. 
+
+```{r}
+
+scores <- tibble(
+  id = c(1,1,2,2,3,3),
+  subject = c("math","stats","math","stats","math","stats"),
+  score = c(90,85,70,88,95,80)
+)
+
+info <- tibble(
+  id = c(1,2,3),
+  major = c("Stat","Econ","CS")
+)
+
+```
+
+**(a)** Join the two tables by `id`.
+
+**(b)** Compute the *mean score* for each combination of (`major`, `subject`).
+
+**(c)** Convert the result to *wide format*, where columns are `math` and `stats`, and rows are majors.
+
+**(d)** Which major has the *largest difference* between mean math and mean stats scores?
