@@ -1,0 +1,93 @@
+---
+title: "STA 141A: Midquarter report"
+author: "(Type your name here)"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Overview
+
+The midquarte report helps you start working on the wildfire dataset. The five tasks outline some basic exploratory data analysis to investigate the spatial and temporal patterns in the wildfire dataset. Each group is required to schedule and attend one consulting sessions  in Week 7. You can discussed and worked on the report with your groupmates, but you need to write up your own report. 
+
+## Data
+
+The full dataset ([link](https://www.kaggle.com/datasets/rtatman/188-million-us-wildfires/data)) contains 1.88 million entries of wildfires. The dataset of is of 795 MB in size. You can find a smaller subset that contains 100,000 entries on Canvas. You can work on the small subset or the full dataset as you see fit. You can load the 100k data using the following code. Detailed description of variables in the dataset is available on Kaggle. 
+
+```{r}
+
+wildfires <-read.csv(file = "./Data/wildfires_sample_100k.csv")
+
+```
+
+
+---
+
+###  Task 1 Understanding the Dataset
+
+**(a)** Print the number of rows and columns, and list names and data types.
+
+**(b)** Identify variables with missing values and any other issues.
+
+**(c)** Write 4–6 sentences describing your initial impressions and data-quality concerns.
+
+
+---
+
+### Task 2 Exploring Temporal Patterns
+
+Use `FIRE_YEAR`, `DISCOVERY_DOY`, and/or `DISCOVERY_DATE`.
+
+**(a)** Convert `DISCOVERY_DATE` to a proper `Date` (Here we assume that the days are counted from 1970-01-01).
+
+**(b)** Plot annual number of wildfires by year.
+
+**(c)** Plot average fire size per year by year. 
+
+**(d)** Write 3–5 sentences describing temporal trends.
+
+
+---
+
+### Task 3 Exploring Spatial Patterns
+
+**(a)** Create a table of fire counts per `STATE` and report the top 10 states.
+
+**(b)** Make a horizontal bar plot of the top 10 states.
+
+**(c)** Make a scatterplot of ignition points (`LONGITUDE` vs `LATITUDE`).
+
+**(d)** Comment briefly on geographic patterns. Optional: you may find it helpful to draw the boundaries of states. 
+
+---
+
+### Task 4 Fire Size Distribution
+
+
+**(a)** Plot a histogram of `FIRE_SIZE` in log scale.
+
+**(b)** Create a boxplot of `FIRE_SIZE` by `FIRE_SIZE_CLASS`.
+
+**(c)** Compute the median, 90th percentile, and 99th percentile of `FIRE_SIZE`.
+
+**(d)** Write 3–4 sentences interpreting the distribution and what it suggests for prediction tasks.
+
+---
+
+
+### Task 5 Visualizing Fire Size Patterns
+
+**(a)** Create a visualization that illustrates both the spatial and temporal patterns of fire sizes across U.S. states and years. Specifically, construct a heatmap with `STATE` on the y-axis, `FIRE_YEAR` on the x-axis, and the median `FIRE_SIZE` within each state–year combination represented by color intensity.
+
+
+**(b)** Briefly interpret the visualization. Your interpretation should describe any noticeable spatial differences across states, temporal trends over years, or other meaningful patterns observed in the plot.
+
+---
+### Task 6  Designing Your Own Visualization
+
+**(a)** Create an additional visualization of your own choosing that also highlights spatial and temporal information in fire sizes across states and years.  
+
+**(b)** Provide a short explanation of (1) why you chose this visualization, and (2) what new or complementary insights it reveals compared to plots from the other tasks.
+
