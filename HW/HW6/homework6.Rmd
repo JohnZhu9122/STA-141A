@@ -1,0 +1,96 @@
+---
+title: "STA 141A: Assignment 6"
+author: "(Type your name here)"
+output: html_document
+---
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# Setup ---------------------------------------------------------------
+
+set.seed(141)
+
+library(tidyverse)
+library(ISLR)         # for Default dataset
+library(rpart)        # decision trees
+library(rpart.plot)   # tree plotting
+library(randomForest) # random forest
+
+```
+
+---
+## Question 1
+
+We will use the `mtcars` dataset to build a prediction model for fuel economy.
+
+1. Treat `mpg` (miles per gallon) as the response and consider `wt` (weight) and `hp` (horsepower) as predictors. Split the data into a training set ($80\%$) and a test set ($20\%$) using a random split.
+2. Fit the linear regression model
+   $$ \text{mpg} = \beta_0 + \beta_1 \, \text{wt} + \beta_2 \, \text{hp} + \varepsilon $$
+   using the training set.
+3. Compute the training MSE and test MSE.
+4. Briefly comment on the difference between training and test MSE.
+
+## Question 2
+
+We use the `Default` dataset from the `ISLR` package. The response `default` indicates whether a customer defaults on their credit card balance (`Yes` or `No`).
+
+1. Convert `Default` to a tibble and create a numeric binary variable
+
+   $$
+   \texttt{default01} =
+   \begin{cases}
+     1 & \text{if default = "Yes"} \\
+     0 & \text{if default = "No"}
+   \end{cases}
+   $$
+
+2. Fit a logistic regression model with `default01` as the response and predictors `balance` and `income` using the full dataset.
+3. For each observation, compute the fitted probability of default.
+4. Using a classification threshold of 0.5, assign each observation to “default” (1) or “no default” (0). Compute the overall classification accuracy.
+5. Now change the threshold to 0.2. Recompute the classification accuracy. Compare the accuracy under thresholds 0.5 and 0.2
+
+## Question 3
+
+We consider the `Default` dataset again.
+
+1. Using the same dataset created in Problem 2, fit a classification tree to predict `default01` using`balance`, `income`, and `student`. You may use `rpart()` with `method = "class"`.
+2. Plot the fitted tree with `rpart.plot()`.
+3. Compute the overall classification accuracy of the tree on the full dataset.
+4. Compare the tree’s accuracy to the logistic regression model from Problem 2 (using threshold 0.5). Which model classifies better in this dataset?
+
+
+## Question 4
+
+We now fit a random forest model for the same default prediction task.
+
+1. Using the same dataset in the previous questions, fit a random forest to predict `default01` using `balance`, `income`, and `student`. Make sure the response is treated as a factor in the model.
+2. Print the random forest object and note the out-of-bag (OOB) error rate.
+3. Create a variable importance plot.
+4. Compute the classification accuracy of the random forest on the full dataset.
+5. Compare the random forest accuracy with  the logistic regression (Question 2, threshold 0.5) and  the classification tree (Question 3). 
+
+
+## Question 5
+
+We now compare three models for predicting default:
+
+- Logistic regression (Problem 2),
+- Classification tree (Problem 3),
+- Random forest (Problem 4).
+
+Use 5-fold cross-validation on the `Default` data.
+
+1. Write a function `cv_error(model_type, k = 5, data = df_def)` that:
+   - randomly splits the data into `k` folds,
+   - for each fold, fits the specified model on the other `k-1` folds,
+   - computes the misclassification rate on the held-out fold,
+   - returns the average misclassification rate across folds.
+
+   Here `model_type` is one of `"logit"`, `"tree"`, `"rf"`.
+
+2. Use your function to compute 5-fold CV errors for all three models.
